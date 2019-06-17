@@ -8,18 +8,25 @@
 (function() {
   var global = global || this || window || Function('return this')();
   var nx = global.nx || require('next-js-core2');
-  var times = {};
 
+  // add debug flag
   var NxConsoleTime = nx.declare('nx.ConsoleTime', {
     statics: {
+      times: {},
+      DEBUG: true,
       time: function(inLabel) {
+        if (!this.DEBUG) return;
+        var times = this.times;
         times[inLabel] = times[inLabel] || [];
         times[inLabel].push(Date.now());
       },
       timeEnd: function(inLabel) {
+        if (!this.DEBUG) return;
+        var times = this.times;
         times[inLabel].push(Date.now());
         var recored = times[inLabel];
-        console.log(inLabel + ': ', recored[1] - recored[0]);
+        var duration = recored[1] - recored[0];
+        console.log(inLabel + ': ', duration + 'ms');
       }
     }
   });
