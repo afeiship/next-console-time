@@ -26,7 +26,8 @@
         times[inLabel].push(Date.now());
         var recored = times[inLabel];
         var duration = recored[1] - recored[0];
-        console.log(inLabel + ': ', duration + 'ms');
+        var msg = '[ ⏰ ' + inLabel + ' ]: ' + duration + 'ms';
+        console.log('%c ' + msg, 'color:#007aff;');
       }
     }
   });
