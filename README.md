@@ -1,5 +1,5 @@
 # next-console-time
-> Time/timeEnd for next
+> Time/timeEnd for next.
 
 ## installation
 ```bash
