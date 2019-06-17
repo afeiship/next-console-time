@@ -7,10 +7,11 @@ npm install -S afeiship/next-console-time --registry=https://registry.npm.taobao
 ```
 
 ## apis
-| api     | params  | description    |
-| ------- | ------- | -------------- |
-| time    | inLabel | Set start date |
-| timeEnd | inLabel | Set end date   |
+| api                       | params     | description                    |
+| ------------------------- | ---------- | ------------------------------ |
+| time                      | inLabel    | Set start date                 |
+| timeEnd                   | inLabel    | Set end date                   |
+| nx.__DEBUG_CONSOLE_TIME__ | true/false | If open/close the debug option |
 
 ## usage
 ```js
