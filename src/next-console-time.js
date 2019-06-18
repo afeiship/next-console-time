@@ -11,12 +11,12 @@
         if (!this.DEBUG) return;
         var times = this.times;
         times[inLabel] = times[inLabel] || [];
-        times[inLabel].push(Date.now());
+        times[inLabel][0] = Date.now();
       },
       timeEnd: function(inLabel) {
         if (!this.DEBUG) return;
         var times = this.times;
-        times[inLabel].push(Date.now());
+        times[inLabel][1] = Date.now();
         var recored = times[inLabel];
         var duration = recored[1] - recored[0];
         var msg = '[ ⏰ ' + inLabel + ' ]: ' + duration + 'ms';
