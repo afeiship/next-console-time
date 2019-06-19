@@ -2,6 +2,7 @@
  * name: next-console-time
  * url: https://github.com/afeiship/next-console-time
  * version: 1.0.0
+ * date: 2019-06-19T11:17:31.466Z
  * license: MIT
  */
 
