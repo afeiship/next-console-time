@@ -14,7 +14,7 @@
     statics: {
       times: {},
       DEBUG: true,
-      isOnly: false,
+      isOnly: null,
       time: function(inLabel) {
         if (!this.DEBUG) return;
         var isOnly = this.isOnly;

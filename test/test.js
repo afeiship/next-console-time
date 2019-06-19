@@ -58,7 +58,7 @@
         str = str + i;
       }
       NxConsoleTime.timeEnd('tt3');
-      // console.log(times);
+      console.log(times);
       expect(Object.keys(times)).toEqual(['tt2']);
     });
   });

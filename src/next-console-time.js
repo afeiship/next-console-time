@@ -1,44 +1,37 @@
 (function() {
   var global = global || this || window || Function('return this')();
   var nx = global.nx || require('next-js-core2');
-  var nxDelete = nx.delete || require('next-delete');
+  var _ = nx.delete || require('next-delete');
 
   var NxConsoleTime = nx.declare('nx.ConsoleTime', {
     statics: {
       times: {},
       DEBUG: true,
-      isOnly: false,
+      onlyLabel: null,
       time: function(inLabel) {
         if (!this.DEBUG) return;
-        var isOnly = this.isOnly;
+        var onlyLabel = this.onlyLabel;
         var times = this.times;
-        if (!isOnly || (isOnly && inLabel === isOnly)) {
+        if (!onlyLabel || (onlyLabel && inLabel === onlyLabel)) {
           times[inLabel] = times[inLabel] || [];
           times[inLabel][0] = Date.now();
         }
       },
       timeEnd: function(inLabel, inIsOnly) {
         if (!this.DEBUG) return;
-        var isOnly = (this.isOnly = inIsOnly ? inLabel : null);
-        var _recored = this.times[inLabel];
-        var times;
-
-        if (!_recored) return;
-        if (isOnly) {
-          if (_recored) {
-            times = nxDelete(this.times);
-            times[inLabel] = _recored;
-            this.times = times;
-          }
-        } else {
-          times = this.times;
-        }
-
+        var times = this.times;
+        var onlyLabel = (this.onlyLabel = this.onlyLabel || (inIsOnly ? inLabel : null));
+        if (onlyLabel && onlyLabel !== inLabel) return;
         times[inLabel][1] = Date.now();
-        var recored = times[inLabel];
-        var duration = recored[1] - recored[0];
+        var record = times[inLabel];
+        var duration = record[1] - record[0];
         var msg = '[ ⏰ ' + inLabel + ' ]: ' + duration + 'ms';
         console.log('%c ' + msg, 'color:#007aff;');
+
+        if (onlyLabel && onlyLabel === inLabel) {
+          nx.delete(this.times);
+          this.times[inLabel] = record;
+        }
       }
     }
   });
