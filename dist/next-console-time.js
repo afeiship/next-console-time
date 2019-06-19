@@ -10,7 +10,6 @@
   var nx = global.nx || require('next-js-core2');
   var nxDelete = nx.delete || require('next-delete');
 
-  // add debug flag
   var NxConsoleTime = nx.declare('nx.ConsoleTime', {
     statics: {
       times: {},
@@ -25,11 +24,11 @@
       timeEnd: function(inLabel, inIsOnly) {
         if (!this.DEBUG) return;
         var isOnly = (this.isOnly = !!inIsOnly);
+        var _recored = this.times[inLabel];
         var times;
 
+        if (!_recored) return;
         if (isOnly) {
-          var _recored = this.times[inLabel];
-          if (!_recored) return;
           if (_recored) {
             times = nxDelete(this.times);
             times[inLabel] = _recored;

@@ -35,7 +35,7 @@
       expect(times.test2).toBeUndefined();
     });
 
-    test.only('when only option set to true', function() {
+    test('when only option set to true', function() {
       var times = NxConsoleTime.times;
       NxConsoleTime.time('tt1');
       var str = 'AAAA';
