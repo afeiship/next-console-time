@@ -23,7 +23,7 @@
       },
       timeEnd: function(inLabel, inIsOnly) {
         if (!this.DEBUG) return;
-        var isOnly = (this.isOnly = !!inIsOnly);
+        var isOnly = (this.isOnly = this.isOnly || !!inIsOnly);
         var _recored = this.times[inLabel];
         var times;
 
