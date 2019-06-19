@@ -9,14 +9,17 @@
       DEBUG: true,
       isOnly: false,
       time: function(inLabel) {
-        if (!this.DEBUG || this.isOnly) return;
+        if (!this.DEBUG) return;
+        var isOnly = this.isOnly;
         var times = this.times;
-        times[inLabel] = times[inLabel] || [];
-        times[inLabel][0] = Date.now();
+        if (!isOnly || (isOnly && inLabel === isOnly)) {
+          times[inLabel] = times[inLabel] || [];
+          times[inLabel][0] = Date.now();
+        }
       },
       timeEnd: function(inLabel, inIsOnly) {
         if (!this.DEBUG) return;
-        var isOnly = (this.isOnly = this.isOnly || !!inIsOnly);
+        var isOnly = (this.isOnly = inIsOnly ? inLabel : null);
         var _recored = this.times[inLabel];
         var times;
 

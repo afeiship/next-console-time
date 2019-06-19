@@ -35,7 +35,7 @@
       expect(times.test2).toBeUndefined();
     });
 
-    test('when only option set to true', function() {
+    test.only('when only option set to true', function() {
       var times = NxConsoleTime.times;
       NxConsoleTime.time('tt1');
       var str = 'AAAA';
@@ -57,8 +57,8 @@
       for (var i = 0; i < 20000; i++) {
         str = str + i;
       }
-      NxConsoleTime.timeEnd('tt3', true);
-
+      NxConsoleTime.timeEnd('tt3');
+      // console.log(times);
       expect(Object.keys(times)).toEqual(['tt2']);
     });
   });
