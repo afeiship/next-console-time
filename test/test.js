@@ -34,5 +34,32 @@
       expect(times).toEqual({});
       expect(times.test2).toBeUndefined();
     });
+
+    test.only('when only option set to true', function() {
+      var times = NxConsoleTime.times;
+      NxConsoleTime.time('tt1');
+      var str = 'AAAA';
+      for (var i = 0; i < 20000; i++) {
+        str = str + i;
+      }
+      NxConsoleTime.timeEnd('tt1');
+
+      NxConsoleTime.time('tt2');
+      var str = 'AAAA';
+      for (var i = 0; i < 20000; i++) {
+        str = str + i;
+      }
+      NxConsoleTime.timeEnd('tt2', true);
+
+      // The thrid times;
+      NxConsoleTime.time('tt3');
+      var str = 'AAAA';
+      for (var i = 0; i < 20000; i++) {
+        str = str + i;
+      }
+      NxConsoleTime.timeEnd('tt3', true);
+
+      expect(Object.keys(times)).toEqual(['tt2']);
+    });
   });
 })();

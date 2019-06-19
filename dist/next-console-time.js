@@ -8,21 +8,37 @@
 (function() {
   var global = global || this || window || Function('return this')();
   var nx = global.nx || require('next-js-core2');
+  var nxDelete = nx.delete || require('next-delete');
 
   // add debug flag
   var NxConsoleTime = nx.declare('nx.ConsoleTime', {
     statics: {
       times: {},
       DEBUG: true,
+      isOnly: false,
       time: function(inLabel) {
-        if (!this.DEBUG) return;
+        if (!this.DEBUG || this.isOnly) return;
         var times = this.times;
         times[inLabel] = times[inLabel] || [];
         times[inLabel][0] = Date.now();
       },
-      timeEnd: function(inLabel) {
+      timeEnd: function(inLabel, inIsOnly) {
         if (!this.DEBUG) return;
-        var times = this.times;
+        var isOnly = (this.isOnly = !!inIsOnly);
+        var times;
+
+        if (isOnly) {
+          var _recored = this.times[inLabel];
+          if (!_recored) return;
+          if (_recored) {
+            times = nxDelete(this.times);
+            times[inLabel] = _recored;
+            this.times = times;
+          }
+        } else {
+          times = this.times;
+        }
+
         times[inLabel][1] = Date.now();
         var recored = times[inLabel];
         var duration = recored[1] - recored[0];

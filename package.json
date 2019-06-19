@@ -31,6 +31,7 @@
     "yargs": "^4.7.1"
   },
   "dependencies": {
+    "next-delete": "github:afeiship/next-delete",
     "next-js-core2": "github:afeiship/next-js-core2"
   }
 }
