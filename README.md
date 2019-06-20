@@ -24,6 +24,15 @@ for (let i = 0; i < 1000000; i++) {
 }
 NxConsoleTime.timeEnd('test');
 
+
+// Use only option:
+NxConsoleTime.time('test');
+const str = '';
+for (let i = 0; i < 1000000; i++) {
+  str = str + i;
+}
+NxConsoleTime.timeEnd('test', true);
+
 // pretty output:
 // [ ⏰ changeIndexTab ]: 1524ms
 ```
